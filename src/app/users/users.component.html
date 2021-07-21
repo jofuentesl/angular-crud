@@ -1,0 +1,33 @@
+<div class="container p-5">
+  <h1>Users</h1>
+  <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+     
+         
+            <tr *ngFor="let group of data">
+              <td>{{group.id}}</td>
+              <td>{{group.email}}</td>
+              <td>{{group.username}}</td>
+              <td>
+                <button class="bg-danger"> <i class="fas fa-trash" (click)="deleteuser(group.id)"></i> </button>
+                <button class="bg-primary"> <i class="fas fa-upload" (click)="updateUser(group.id)"></i> </button>
+              </td>
+              
+
+            </tr>
+         
+       
+       
+        
+      </tbody>
+    </table>
+   
+</div>
