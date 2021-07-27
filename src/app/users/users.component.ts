@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CrudService } from '../crud.service'; 
+import { CrudService } from '../crud.service';
 
 @Component({
   selector: 'app-users',
@@ -16,32 +16,28 @@ export class UsersComponent implements OnInit {
 //Get all users data
 loaddata()
 {
-  //Get all usera details  
+  //Get all usera details
   this.crudservice.getusers().subscribe((res: any[])=>{
-          
+
     this.data = res;
   });
-}  
+}
 //Delete User
 deleteuser(id:any)
 {
   if(confirm("Are you sure to delete?")) {
   // Initialize Params Object
   var myFormData = new FormData();
-   
-      
+
+
   // Begin assigning parameters
   myFormData.append('deleteid', id);
-  
+
   this.crudservice.deleteuser(myFormData);
   //sweetalert message popup
   this.loaddata();
-}
-}
-  updateUser(id:any) {
-
-    this.router.navigate([`/updateuser`, `${id}`]);
   }
+}
 
   ngOnInit(): void {
 

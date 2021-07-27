@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CrudService {
 
   userData:any;
@@ -13,23 +15,23 @@ export class CrudService {
 
   public getusers():Observable<any>
       {
-        
-          return this.http.get('users.php');
+
+          return this.http.get('http://localhost:8888/users.php');
       }
 
-  
-  //add new user    
+
+  //add new user
   public adduser(userData: any)
   {
-    return this.http.post('users.php/', userData).subscribe((res) => {
+    return this.http.post('http://localhost:8888/users.php/', userData).subscribe((res) => {
     console.log(res);
   });
   }
-  
+
   //delete user
   public deleteuser(userid:any)
   {
-    return this.http.post('users.php/'
+    return this.http.post('http://localhost:8888/users.php/'
     , userid).subscribe((res: any) => {});
   }
 
@@ -38,16 +40,17 @@ export class CrudService {
   //get single user
   public getsingleuser(userid:any)
   {
-    return this.http.post('users.php/'
+    return this.http.post('http://localhost:8888/users.php/'
     , userid).subscribe((res: any) => {
       this.singleuserdata = res[0];
-      
+      console.log("testget", this.singleuserdata);
     });
   }
-  //update user
+
   public updateuser(userid:any)
   {
-    return this.http.post('users.php/'
+    return this.http.post('http://localhost:8888/users.php/'
     , userid).subscribe((res: any) => {});
   }
+
 }
