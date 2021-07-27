@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { UsersComponent } from './users/users.component';
+
+interface User {
+  id: number;
+  username: string;
+  email?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +17,9 @@ import { Observable } from 'rxjs';
 
 export class CrudService {
 
+
+ currentUser:User[];
+
   userData:any;
 
   constructor( private http:HttpClient) { }
@@ -16,14 +27,14 @@ export class CrudService {
   public getusers():Observable<any>
       {
 
-          return this.http.get('http://localhost:8888/users.php');
+          return this.http.get('users.php');
       }
 
 
   //add new user
   public adduser(userData: any)
   {
-    return this.http.post('http://localhost:8888/users.php/', userData).subscribe((res) => {
+    return this.http.post('users.php', userData).subscribe((res) => {
     console.log(res);
   });
   }
@@ -31,7 +42,7 @@ export class CrudService {
   //delete user
   public deleteuser(userid:any)
   {
-    return this.http.post('http://localhost:8888/users.php/'
+    return this.http.post('users.php'
     , userid).subscribe((res: any) => {});
   }
 
@@ -40,16 +51,17 @@ export class CrudService {
   //get single user
   public getsingleuser(userid:any)
   {
-    return this.http.post('http://localhost:8888/users.php/'
+    return this.http.post('users.php'
     , userid).subscribe((res: any) => {
       this.singleuserdata = res[0];
       console.log("testget", this.singleuserdata);
     });
   }
 
-  public updateuser(userid:any)
+  //update user
+  public updateuser(userid:any )
   {
-    return this.http.post('http://localhost:8888/users.php/'
+    return this.http.post('users.php'
     , userid).subscribe((res: any) => {});
   }
 
