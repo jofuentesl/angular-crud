@@ -36,8 +36,12 @@ deleteuser(id:any)
   this.crudservice.deleteuser(myFormData);
   //sweetalert message popup
   this.loaddata();
-  }
 }
+}
+  updateUser(id:any) {
+
+    this.router.navigate([`/updateuser`, `${id}`]);
+  }
 
   ngOnInit(): void {
 

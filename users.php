@@ -13,7 +13,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
+}
 //Add user
 if(isset($_POST['myEmail']))
 {
@@ -25,7 +25,7 @@ if(isset($_POST['myEmail']))
     } else {
         $data = array("data" => "Error: " . $sql . "<br>" . $conn->error);
         echo json_encode($data);
-        
+
     }
 }
 //Delete user
@@ -33,11 +33,11 @@ elseif(isset($_POST['deleteid']))
 {
     $sql = mysqli_query($conn, "DELETE from userdetail where id =".$_POST['deleteid']);
     if ($sql) {
-        
+
         $data = array("data" => "Record deleted successfully");
         echo json_encode($data);
       } else {
-      
+
         $data = array("data" =>"Error deleting record: " . mysqli_error($conn));
         echo json_encode($data);
       }
@@ -57,11 +57,11 @@ elseif(isset($_POST["updateid"]))
 {
     $sql = "UPDATE userdetail SET email='".$_POST["updateEmail"]."', username='".$_POST["updateUsername"]."'  WHERE id=".$_POST["updateid"];
     if ($conn->query($sql) === TRUE) {
-    
+
        $data = array("data" => "Record updated successfully");
         echo json_encode($data);
     } else {
-    
+
     $data = array("data" => "Error updating record: " . $conn->error);
     echo json_encode($data);
     }
@@ -74,7 +74,7 @@ else
     while($r = mysqli_fetch_assoc($trp)) {
         $rows[] = $r;
     }
-   
+
     print json_encode($rows);
 }
 die();

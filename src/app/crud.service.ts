@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TestBed } from '@angular/core/testing';
-import { UsersComponent } from './users/users.component';
+
 
 interface User {
   id: number;
@@ -54,15 +53,15 @@ export class CrudService {
     return this.http.post('users.php'
     , userid).subscribe((res: any) => {
       this.singleuserdata = res[0];
-      console.log("testget", this.singleuserdata);
+      console.log( this.singleuserdata);
     });
   }
 
   //update user
   public updateuser(userid:any )
   {
-    return this.http.post('users.php'
-    , userid).subscribe((res: any) => {});
+    return this.http.post('users.php/'
+    , userid).subscribe((res:any) => {});
   }
 
 }
